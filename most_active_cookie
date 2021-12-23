@@ -1,0 +1,35 @@
+def most_active_cookie(new_file, string_date):
+  
+  input_file = open(new_file, "r")
+  full_text = input_file.read()
+  cookie_list = full_text.split("\n")
+  exact_time_list = []
+  #print(cookie_list)
+  for cookie in cookie_list:
+    first_comma_index = cookie.find(",")
+    time_string = cookie[first_comma_index + 1:first_comma_index + 11]
+    if time_string == string_date:
+      exact_time_list.append(cookie[(first_comma_index + 12):])
+  #print(exact_time_list)
+  compare_list = []
+  for each_time in exact_time_list:
+    if not each_time[0] == "0":
+      compare_list.append(each_time[:2])
+    else:
+      compare_list.append(each_time[1:2])
+  max_time = 0
+  for each_number in compare_list:
+    each_number = int(each_number)
+    if each_number > max_time:
+      max_time = each_number
+  
+  max_numbers_index_list = []
+  for i in range(0, len(compare_list)):
+    if int(compare_list[i]) == max_time:
+      max_numbers_index_list.append(i)
+  #print(max_numbers_index_list)
+  for element in max_numbers_index_list:
+    first_comma_index = cookie_list[element].find(",")
+    print(cookie_list[element][:first_comma_index])
+ 
+most_active_cookie("cookie_log.csv", "2018-12-08")
