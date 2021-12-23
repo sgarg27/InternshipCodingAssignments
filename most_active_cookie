@@ -32,4 +32,4 @@ def most_active_cookie(new_file, string_date):
     first_comma_index = cookie_list[element].find(",")
     print(cookie_list[element][:first_comma_index])
  
-most_active_cookie("cookie_log.csv", "2018-12-08")
+most_active_cookie("cookie_log.csv", "2018-12-09")
